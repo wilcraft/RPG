@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG
 {
-    internal class Attributes()
+    public class Attributes()
     {
         public enum rarityValues
         {
@@ -35,6 +35,32 @@ namespace RPG
             Brilliance,
             Amplification
         }
+        private List<string> AxeTypes = new List<string>
+        {
+            "Broad Axe",
+            "Splitting Maul",
+            "Felling Axe",
+            "Double Axe"
+        };
+        private List<string> ClubTypes = new List<string>
+        {
+            "Wooden Club",
+            "Cracked Club",
+            "Stone Club",
+        };
+        private List<string> SwordTypes = new List<string>
+        {
+            "Longsword",
+            "Shortsword",
+            "Two-Hander",
+            "Scimitar",
+            "Saber"
+        };
+
+        public List<string> getSwordTypes { get => SwordTypes; set => SwordTypes = value; }
+        public List<string> getClubTypes { get => ClubTypes; set => ClubTypes = value; }
+        public List<string> getAxeTypes { get => AxeTypes; set => AxeTypes = value; }
+        
     }
 
 }

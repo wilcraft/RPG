@@ -9,7 +9,7 @@ namespace RPG
 {
     internal class BoilerPlate()
     {
-        public class modifyWeapon()
+        public class ModifyWeapon()
         {
             rarityValues rarity;
             Weapon weapon;
@@ -46,6 +46,17 @@ namespace RPG
                     weapon.DamageCeiling = Math.Round(weapon.DamageCeiling *= 5 + 40, MidpointRounding.AwayFromZero);
                     weapon.Durability = Math.Round(weapon.Durability *= 10, MidpointRounding.AwayFromZero);
                 }
+            }
+            public void GenerateWeapon(Weapon weapon)
+            {
+                weapon.createRarity();
+                weapon.createWeapon();
+                weapon.createName();
+                Console.WriteLine($"{weapon.name} Rarity: {weapon.Rarity}");
+                Console.WriteLine($"{weapon.name} Damage: {weapon.DamageFloor} - {weapon.DamageCeiling}");
+                Console.WriteLine($"{weapon.name} Durability: {weapon.Durability}");
+                Console.WriteLine($"{weapon.name} Can Behead: {weapon.CanBehead}");
+                Console.WriteLine($"{weapon.name} Can Stun: {weapon.CanStun}");
             }
         }
     }

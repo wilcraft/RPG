@@ -37,13 +37,13 @@ namespace RPG
             public bool IsSharp { get => isSharp; set => isSharp = value; }
             public bool CanStun { get => canStun; set => canStun = value; }
 
-            public virtual void generateWeapon()
+            public virtual void createWeapon()
             {
                 DamageFloor = rand.Next(11, 25);
                 DamageCeiling = rand.Next(25, 90);
                 Durability = 100;
             }
-            public virtual void generateRarity()
+            public virtual void createRarity()
             {
                 foreach (var rarityWeight in Enum.GetValues<rarityValues>())
                 {
@@ -65,7 +65,7 @@ namespace RPG
                     }
                 }
             }
-            public virtual void generateName()
+            public virtual void createName()
             {
                 if (Rarity != rarityValues.Common)
                 {
@@ -78,16 +78,16 @@ namespace RPG
             }
 
         }
-
         public class Axe : Weapon
         {
             Random rand = new Random();
-            modifyWeapon mod = new modifyWeapon();
-            public override void generateWeapon()
+            ModifyWeapon mod = new ModifyWeapon();
+            Attributes attr = new Attributes();
+            public override void createWeapon()
             {
-                name = "Axe";
+                name = attr.getAxeTypes[rand.Next(attr.getAxeTypes.Count())];
                 DamageFloor = rand.Next(14, 48);
-                DamageCeiling = rand.Next((int)(DamageFloor+1), (int)((DamageFloor + rand.Next(1,10)) * 3));
+                DamageCeiling = rand.Next((int)(DamageFloor+15), (int)((DamageFloor + rand.Next(1,10)) * 3));
                 Durability = rand.Next(15, 50);
                 CanBehead = true;
                 IsSharp = true;
@@ -98,13 +98,13 @@ namespace RPG
         public class Club : Weapon
         {
             Random rand = new Random();
-            modifyWeapon mod = new modifyWeapon();
-
-            public override void generateWeapon()
+            ModifyWeapon mod = new ModifyWeapon();
+            Attributes attr = new Attributes();
+            public override void createWeapon()
             {
-                name = "Club";
+                name = attr.getClubTypes[rand.Next(attr.getClubTypes.Count())];
                 DamageFloor = rand.Next(20, 30);
-                DamageCeiling = rand.Next(((int)DamageFloor + 1),(int)((DamageFloor + rand.Next(10,15)) * 2));
+                DamageCeiling = rand.Next((int)DamageFloor + 15,(int)((DamageFloor + rand.Next(10,15)) * 2));
                 Durability = rand.Next(30, 60);
                 IsBlunt = true;
                 CanStun = true;
@@ -113,5 +113,22 @@ namespace RPG
             }
         }
 
+        public class Sword : Weapon
+        {
+            Random rand = new Random();
+            ModifyWeapon mod = new ModifyWeapon();
+            Attributes attr = new Attributes();
+            public override void createWeapon()
+            {
+                name = attr.getSwordTypes[rand.Next(attr.getSwordTypes.Count())];
+                DamageFloor = rand.Next(34, 45);
+                DamageCeiling = rand.Next((int)DamageFloor + 15, (int)(DamageFloor + rand.Next(5,20)*2.5));
+                Durability = rand.Next(40, 50);
+                IsSharp = true;
+                CanBehead = true;
+                Weapon Sword = this;
+                mod.modifyWeaponBasedOnRarity(Sword);
+            }
+        }
     }
 }

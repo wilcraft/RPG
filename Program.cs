@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using static RPG.ToolBaseTypes;
+using static RPG.BoilerPlate;
 namespace RPG
 {
     internal class Program
@@ -10,27 +11,24 @@ namespace RPG
             while (isrunning)
             {
                 var input = Console.ReadLine().ToUpper();
+                ModifyWeapon mod = new ModifyWeapon();
                 if(input != "X")
                 {
                     if (input == "1")
                     {
                             Weapon axe = new Axe();
-                            axe.generateRarity();
-                            axe.generateWeapon();
-                            axe.generateName();
-                            Console.WriteLine($"{axe.name} Damage : {axe.DamageFloor} - {axe.DamageCeiling}");
-                            Console.WriteLine($"{axe.name} Durability : {axe.Durability}");
-                            Console.WriteLine($"{axe.name} Can Behead: {axe.CanBehead}");
+                            mod.GenerateWeapon(axe);
+                            
                     }
                     if(input == "2")
                     {
                         Weapon club = new Club();
-                        club.generateRarity();
-                        club.generateWeapon();
-                        club.generateName();
-                        Console.WriteLine($"{club.name} Damage : {club.DamageFloor} - {club.DamageCeiling}");
-                        Console.WriteLine($"{club.name} Durability : {club.Durability}");
-                        Console.WriteLine($"{club.name} Can Stun: {club.CanStun}");
+                        mod.GenerateWeapon(club);
+                    }
+                    if(input == "3")
+                    {
+                        Weapon Sword = new Sword();
+                        mod.GenerateWeapon(Sword);
                     }
                 }
                 else
